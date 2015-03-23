@@ -2,14 +2,12 @@ class PatPho(object):
 
     """
     Attempt at a Pythonic re-write of PatPho.
-
-    Only supports left-justified format right now.
     """
 
     def __init__(self):
 
         self.syllabic_grid = None
-        self. idx = None
+        self.idx = None
         self.init_syllabic_grid_and_index()
 
         self.vowels = {"i", "I", "e", "E", "&", "@", "3", "V", "a", "U", "u", "O", "A", "Q"}
@@ -28,26 +26,18 @@ class PatPho(object):
                          "D": [1, 0, 1, 0, 1, 0, 0], "C": [0, 1, 0, 1, 1, 0, 0], "J": [1, 1, 0, 1, 1, 0, 0],
                          'CO': [0, 0, 0, 0, 0, 0, 0]}
 
-
     def init_syllabic_grid_and_index(self):
         self.idx = 0
         self.syllabic_grid = ['CO', 'CO', 'CO', 'VO', 'VO', 'CO', 'CO', 'CO', 'VO', 'VO', 'CO', 'CO', 'CO', 'VO', 'VO',
                               'CO', 'CO', 'CO']
 
-
     def index_to_next_vowel(self):
-        for i in self.syllabic_grid[self.idx:]:
-            if i == 'VO':
-                break
-            self.idx += 1
 
+        self.idx += self.syllabic_grid[self.idx:].index("VO")
 
     def index_to_next_consonant(self):
-        for i in self.syllabic_grid[self.idx:]:
-            if i == 'CO':
-                break
-            self.idx += 1
 
+        self.idx += self.syllabic_grid[self.idx:].index("CO")
 
     def insert_phoneme_into_grid(self, phoneme):
 
@@ -62,14 +52,20 @@ class PatPho(object):
         else:
             raise Exception('Unknown phoneme: %s' % phoneme)
 
+    def get_phon_vector(self, phonemes, left=True):
 
-    def get_phon_vector(self, phonemes):
+        if not left:
+            phonemes = phonemes[::-1]
 
         # go through the phonemes and insert them into the metrical grid
         for p in phonemes:
             self.insert_phoneme_into_grid(p)
 
         # convert metrical grid to vector
+
+        if not left:
+            self.syllabic_grid = self.syllabic_grid[::-1]
+
         phon_vector = []
         for i in self.syllabic_grid:
             phon_vector.extend(self.phonemes[i])
@@ -80,18 +76,14 @@ class PatPho(object):
         return phon_vector
 
 
-
-
 if __name__ == "__main__":
 
 
     pat_pho = PatPho()
 
-
     # some test cases, phonological represntations taken from MRC
 
-    print pat_pho.get_phon_vector('@Uld') # adejctive 'old'
-
+    print pat_pho.get_phon_vector('@Uld') # adjective 'old'
+    print pat_pho.get_phon_vector('@uld', False) # adjective 'old', right-justified
     print pat_pho.get_phon_vector('weIt') # verb 'wait'
-
     print pat_pho.get_phon_vector('hI@') # verb 'hear'

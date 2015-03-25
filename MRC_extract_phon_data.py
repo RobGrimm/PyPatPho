@@ -106,6 +106,8 @@ def get_words_from_mrc(pathtodir):
                 wtype = str(s.cell(row, s.ncols - 11).value)
                 # take the phonological form from the DPHON field (not every word has an entry for the PHON field)
                 phonemes = str(s.cell(row, s.ncols - 2).value)
+                 # strip whitespace
+                phonemes = phonemes.strip()
                 phonemes = ''.join([a if a not in replace_with_empty_string else '' for a in phonemes])
                 phonemes = replace_all(phonemes, mrc_to_patpho_phonemes)
             # ignore Unicode problems -- this is very rare

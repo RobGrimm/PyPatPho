@@ -102,12 +102,12 @@ def get_words_from_mrc(pathtodir):
             try:
                 # take the orthographic form from the 'WORD' field
                 orthographic_form = str(s.cell(row, s.ncols - 4).value).lower()
+                orthographic_form = orthographic_form.strip() # strip whitespace
                 # take the POS tag from the 'WTYPE' field
                 wtype = str(s.cell(row, s.ncols - 11).value)
                 # take the phonological form from the DPHON field (not every word has an entry for the PHON field)
                 phonemes = str(s.cell(row, s.ncols - 2).value)
-                 # strip whitespace
-                phonemes = phonemes.strip()
+                phonemes = phonemes.strip() # strip whitespace
                 phonemes = ''.join([a if a not in replace_with_empty_string else '' for a in phonemes])
                 phonemes = replace_all(phonemes, mrc_to_patpho_phonemes)
             # ignore Unicode problems -- this is very rare

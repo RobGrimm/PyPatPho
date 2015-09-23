@@ -61,16 +61,15 @@ def get_words_from_mrc(pathtodir):
             continue
 
         # take the POS tag from the 'WTYPE' field
-        wtype = unicode(s.cell(row, s.ncols - 11).value)
+        wtype = unicode(s.cell(row, s.ncols - 11).value).strip()
 
         if not wtype:
             continue
 
         # take the phonological form from the DPHON field (not every word has an entry for the PHON field)
         phonemes = unicode(s.cell(row, s.ncols - 2).value)
-        phonemes = phonemes.strip() # strip whitespace
         phonemes = ''.join([a for a in phonemes if a not in REMOVE])
-        phonemes = replace_all(phonemes, CONVERT)
+        phonemes = replace_all(phonemes, CONVERT).strip()
 
         if not phonemes:
             continue

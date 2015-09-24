@@ -2,7 +2,7 @@
 
 A phonological pattern generator. Input phonological forms using the [CELEX]() database phoneme inventory, and PyPatPho will convert this to either a binary or real-valued vector representation, which can then be used as input to, for example, machine learning algorithms. This code is based on the [PatPho Paper](http://blclab.org/wp-content/uploads/2013/02/patpho.pdf) by [Li](http://blclab.org/ping-li/) and [Macwhinney](http://psyling.psy.cmu.edu/).
 
-Because the word vectors are created in a similar way, similar-sounding things will be in the same place in the vector space, which is illustrated by the figure below. As seen in this figure, words that rhyme are tightly clustered together, which proves that they have a high degree of similarity.
+Because the word vectors are created in a similar way, similar-sounding things will be in the same place in the vector space, which is illustrated by the figure below. As seen in this figure, words that rhyme are tightly clustered together, which illustrates that they have a high degree of similarity.
 
 ![bh-sne visualization of phonological vector space](/rhymes.png?raw=true "bh-sne visualization of vector space")
 
@@ -28,7 +28,7 @@ print old # output: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 ```
 
-If you don't have access to CELEX, you can use the MRC database, which is free to download here. The 'MRC_extract_phon_data.py' script will open the Word_data.xls file found on this page and automatically converts the phonemic representations to the CELEX phoneme inventory and create a pickled dictionary for further use. 
+If you don't have access to CELEX, you can use the MRC database, which is free to download [here](http://ota.oucs.ox.ac.uk/headers/1054.xml). The 'MRC_extract_phon_data.py' script will open the Word_data.xls file found on this page and automatically converts the phonemic representations to the CELEX phoneme inventory and create a pickled dictionary for further use. 
 
 An example of use for the pickled dictionary can be found in the 'visualize_examples.py' script. 
 

@@ -28,11 +28,10 @@ print old # output: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 ```
 
-If you don't have access to CELEX, you can use the MRC database, which is free to download [here](http://ota.oucs.ox.ac.uk/headers/1054.xml). The 'MRC_extract_phon_data.py' script will open the Word_data.xls file found on this page and automatically converts the phonemic representations to the CELEX phoneme inventory and create a pickled dictionary for further use. 
-
-An example of use for the pickled dictionary can be found in the 'visualize_examples.py' script. 
+If you don't have access to CELEX, you can use the MRC database, which is free to download [here](http://ota.oucs.ox.ac.uk/headers/1054.xml). The 'MRC_extract_phon_data.py' script will open the Word_data.xls file found on this page and automatically converts the phonemic representations to the CELEX phoneme inventory. It will create a pickled dictionary for further use -- see the 'visualize_examples.py' script for an example of how it should be used together with the PatPho class. 
 
 # Contributors
 
 Robert Grimm
+
 Stéphan Tulkens

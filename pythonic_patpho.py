@@ -72,14 +72,14 @@ class PatPho(object):
                 self.index_to_next_vowel()
                 self.syllabic_grid[self.idx] = phoneme
             except ValueError:
-                print 'Word is too long: %s' % self.current_phonemes
+                print('Word is too long: %s' % self.current_phonemes)
 
         elif phoneme in self.phonemes:
             try:
                 self.index_to_next_consonant()
                 self.syllabic_grid[self.idx] = phoneme
             except ValueError:
-                print 'Word is too long: %s' % self.current_phonemes
+                print('Word is too long: %s' % self.current_phonemes)
 
         else:
             raise TypeError('Unknown phoneme in %s (%s chars long): %s' % (self.current_phonemes,
@@ -120,7 +120,7 @@ class PatPho(object):
 if __name__ == "__main__":
     # some test cases
     pat_pho = PatPho()
-    print pat_pho.get_phon_vector('@Uld')           # adjective 'old'
-    print pat_pho.get_phon_vector('@uld', False)    # adjective 'old', right-justified
-    print pat_pho.get_phon_vector('weIt')           # verb 'wait'
-    print pat_pho.get_phon_vector('hI@')            # verb 'hear'
+    print(pat_pho.get_phon_vector('@Uld'))          # adjective 'old'
+    print(pat_pho.get_phon_vector('@uld', False))   # adjective 'old', right-justified
+    print(pat_pho.get_phon_vector('weIt'))          # verb 'wait'
+    print(pat_pho.get_phon_vector('hI@'))           # verb 'hear'

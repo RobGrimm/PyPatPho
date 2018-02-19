@@ -1,6 +1,6 @@
 import os
-import cPickle
 import time
+import _pickle as cPickle
 from xlrd import open_workbook
 
 ''' map MRC phonemes to their PatPho equivalents where they differ
@@ -20,7 +20,7 @@ REMOVE = {'2', 'Q', '-', '+', 'R', "'"}
 
 
 def replace_all(text, dic):
-    for i, j in dic.iteritems():
+    for i, j in dic.items():
         text = text.replace(i, j)
     return text
 
@@ -44,30 +44,30 @@ def get_words_from_mrc(pathtodir):
                 'PDWTYPE':
                     {'v': {}, 'n': {}, 'adj': {}, 'other': {}}}
 
-    print "Opening workbook"
+    print("Opening workbook")
     # get this from: http://www.psych.rl.ac.uk/Word_data.zip
     workbook = open_workbook(pathtodir + "/Word_data.xlsx")
-    print "Workbook opened"
+    print("Workbook opened")
 
     s = workbook.sheet_by_index(0)
 
     for row in range(s.nrows):
 
         # take the orthographic form from the 'WORD' field
-        orthographic_form = unicode(s.cell(row, s.ncols - 4).value).lower()
+        orthographic_form = str(s.cell(row, s.ncols - 4).value).lower()
         orthographic_form = orthographic_form.strip() # strip whitespace
 
         if not orthographic_form:
             continue
 
         # take the POS tag from the 'WTYPE' field
-        wtype = unicode(s.cell(row, s.ncols - 11).value).strip()
+        wtype = s.cell(row, s.ncols - 11).value.strip()
 
         if not wtype:
             continue
 
         # take the phonological form from the DPHON field (not every word has an entry for the PHON field)
-        phonemes = unicode(s.cell(row, s.ncols - 2).value)
+        phonemes = str(s.cell(row, s.ncols - 2).value)
         phonemes = ''.join([a for a in phonemes if a not in REMOVE])
         phonemes = replace_all(phonemes, CONVERT).strip()
 
@@ -81,14 +81,14 @@ def get_words_from_mrc(pathtodir):
             pass
 
         # if the word has an entry for 'PDWTYPE' (the most common POS tag for that word), get it
-        pdwtype = unicode(s.cell(row, s.ncols - 10).value)
+        pdwtype = str(s.cell(row, s.ncols - 10).value)
 
         try:
             mrc_dict['PDWTYPE'][orthographic_form] = (phonemes, pos_conversion_dict[pdwtype])
         except KeyError:
             continue
 
-    print "--- Done. This took %s minutes ---" % ((time.time() - start_time) / float(60))
+    print("--- Done. This took %s minutes ---" % ((time.time() - start_time) / float(60)))
 
     return mrc_dict
 

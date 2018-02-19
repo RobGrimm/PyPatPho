@@ -1,5 +1,5 @@
 import os
-import cPickle
+import _pickle as cPickle
 from pythonic_patpho import PatPho
 
 

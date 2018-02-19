@@ -39,7 +39,7 @@ for word in nouns + rhymes1 + rhymes2:
     vectors[word] = pat_pho.get_phon_vector(phonemes)
 
 
-
+# use a visualization package (e.g. TSNE implementation in sklearn) to visualize the vector space
 
 
 

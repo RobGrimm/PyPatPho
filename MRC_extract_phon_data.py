@@ -45,7 +45,6 @@ def get_words_from_mrc(pathtodir):
                     {'v': {}, 'n': {}, 'adj': {}, 'other': {}}}
 
     print("Opening workbook")
-    # get this from: http://www.psych.rl.ac.uk/Word_data.zip
     workbook = open_workbook(pathtodir + "/Word_data.xlsx")
     print("Workbook opened")
 

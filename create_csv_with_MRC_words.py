@@ -23,7 +23,7 @@ def mrc_words_to_csv(csv_path):
     with open(csv_path, 'w') as f:
         writer = csv.writer(f, delimiter=',', quotechar='"',
                             quoting=csv.QUOTE_ALL)
-        first_row = ['part_of_speech', 'word', 'binary_vector', 'float_vector']
+        first_row = ['part_of_speech', 'word', 'binary_vector', 'real_vector']
         writer.writerow(first_row)
 
         n_words = 0

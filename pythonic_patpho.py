@@ -12,7 +12,7 @@ class PatPho(object):
             generator for neural networks. Behavior Research Methods,
             Instruments, & Computers, 34(3), 408-415.
 
-        The original C implementation can be found here (June 2015):
+        The original C implementation can be found here (July 2018):
         http://www.personal.psu.edu/pul8/patpho_e.shtml
         """
         self.syllabic_grid = None

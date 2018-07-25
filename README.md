@@ -32,6 +32,8 @@ If you don't have access to CELEX, you can use the [MRC database](http://ota.ouc
 
 We provide a script ('MRC_extract_phon_data.py') that automatically converts the MRC phonemic representations to the CELEX phoneme inventory. The script relies on an XLS file containing the MRC database that used to be available [here](http://www.psych.rl.ac.uk/Word_data.zip). Since the link no longer works, we provide the XLS file ('PyPatPho/Word_data.xls') as is. The 'MRC_extract_phon_data.py' script will open the 'Word_data.xls' file and create a pickled dictionary for further use -- see the 'visualize_examples.py' script for an example of how it should be used together with the PatPho class. 
 
+You can also create a csv file with phonological vectors for all words contained in the MRC database. To do this, first run 'MRC_extract_phon_data.py', followed by 'create_csv_with_MRC_words.py'. This will create a csv file with columns 'part_of_speech', 'word', 'binary_vector', and 'real_vector'. 
+
 # Contributors
 
 Robert Grimm   

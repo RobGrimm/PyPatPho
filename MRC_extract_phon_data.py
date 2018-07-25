@@ -3,7 +3,8 @@ import time
 import _pickle as cPickle
 from xlrd import open_workbook
 
-''' map MRC phonemes to their PatPho equivalents where they differ
+'''
+map MRC phonemes to their PatPho equivalents where they differ
 the MRC phonemes that need to be converted are:
 (the charachter between underscores roughly corresponds to the phoneme):
 
@@ -12,7 +13,8 @@ the MRC phonemes that need to be converted are:
 '9'  (pi_ng_)
 'tS' (_ch_ain)
 'dZ' (_j_eep)
-'o'  (p_o_t) -- only uses'''
+'o'  (p_o_t)
+'''
 CONVERT = {'e': 'E', '0': 'Q', '9': 'N', 'tS': 'C', 'dZ': 'J', 'o': 'Q'}
 
 # additional chars in the DPHON field in the MRC database
@@ -93,7 +95,7 @@ def get_words_from_mrc(pathtodir):
         pdwtype = str(s.cell(row, s.ncols - 10).value)
 
         try:
-            mrc_dict['PDWTYPE'][orthographic] = (phonemes, pos_dict[pdwtype])
+            mrc_dict['PDWTYPE'][pos_dict[pdwtype]][orthographic] = phonemes
         except KeyError:
             continue
 
